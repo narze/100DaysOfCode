@@ -189,9 +189,8 @@ const IndexPage = ({ data }) => (
 export default IndexPage
 
 export const query = graphql`
-  query {
-    allMarkdownRemark {
-      totalCount
+  query MyQuery {
+    allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {
       edges {
         node {
           id
