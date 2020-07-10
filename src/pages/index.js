@@ -1,13 +1,12 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
+// import { css } from "@emotion/core"
 
 import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 
-import entries from "../../content/entries.js"
-
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
     {/* <h1 className="bg-teal-400">Hi people</h1>
@@ -40,28 +39,28 @@ const IndexPage = () => (
       <section className="py-12 px-4">
         <h2 className="text-3xl text-center mb-8 font-heading">Entries</h2>
         <div className="flex flex-wrap -mx-4">
-          {entries.reverse().map(element => {
-            return (
-              <div className="w-full lg:w-1/3 px-4 mb-8 lg:mb-0">
-                <div className="h-full pb-8 rounded shadow-md">
-                  <Link to={`/day/${element.day}`}>
+          {
+            data.allMarkdownRemark.edges.map(({ node }) => (
+              <div key={node.id} className="w-full lg:w-1/3 px-4 mb-8">
+                <Link to={node.fields.slug}>
+                  <div className="h-full pb-8 rounded shadow-md">
                     <img
                       className="mb-4"
                       src="placeholders/pictures/work.jpg"
                       alt=""
                     />
                     <div className="px-6">
-                      <small>Day {element.day} | {element.date}</small>
+                      <small>Day {node.frontmatter.day} | {node.frontmatter.date}</small>
                       <h3 className="text-xl my-3 font-heading">
-                        {element.title}
+                        {node.frontmatter.title}
                       </h3>
-                      <p className="text-gray-500">{element.subtitle}</p>
+                      {/* <p className="text-gray-500">{node.frontmatter.subtitle}</p> */}
                     </div>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
-            )
-          })}
+            ))
+          }
         </div>
       </section>
 
@@ -159,3 +158,24 @@ const IndexPage = () => (
 )
 
 export default IndexPage
+
+export const query = graphql`
+  query MyQuery {
+    allMarkdownRemark(sort: {fields: frontmatter___day, order: ASC}) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+            day
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`
