@@ -621,15 +621,12 @@ pre tt:after {
   }
 }
 
-.subtitle {
-  color: #A8DADC;
-}
-
 main {
   background-color: #FFFFFF;
 }
 
 .hero-image {
+  color: #A8DADC;
   font-size: 125%;
   background-image: url("../images/christopher-gower-m_HRfLhgABo-unsplash.jpg");
   background-size: cover;

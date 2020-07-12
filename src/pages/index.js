@@ -22,7 +22,7 @@ const IndexPage = ({ data }) => (
             <h2 className="text-5xl mt-2 mb-6 leading-tight font-heading">
               100 Days Of Code
             </h2>
-            <p className="subtitle mb-8 leading-relaxed">
+            <p className="mb-8 leading-relaxed">
               A 100-day project which will change your life. Join us!
             </p>
           </div>
