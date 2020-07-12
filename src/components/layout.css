@@ -637,3 +637,14 @@ main {
   background: rgba(0, 0, 0, 0.3);
   height: 100%;
 }
+
+.card {
+  @apply w-full px-4 mb-8;
+  min-height: 200px;
+}
+
+@screen lg {
+  .card {
+    @apply w-1/3
+  }
+}

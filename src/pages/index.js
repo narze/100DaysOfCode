@@ -1,8 +1,8 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import Layout from "../components/layout"
-// import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = ({ data }) => (
@@ -34,9 +34,10 @@ const IndexPage = ({ data }) => (
         <div className="flex flex-wrap -mx-4">
           {
             data.allMarkdownRemark.edges.map(({ node }) => (
-              <div key={node.id} className="w-full lg:w-1/3 px-4 mb-8">
+              <div key={node.id} className="card">
                 <Link to={node.fields.slug}>
-                  <div className="h-full pb-8 rounded shadow-md">
+                  {node.frontmatter.cover && <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />}
+                  <div className="pb-8 rounded shadow-md">
                     <img
                       className="mb-4"
                       src="placeholders/pictures/work.jpg"
@@ -82,6 +83,13 @@ export const query = graphql`
             title
             date(formatString: "DD MMMM, YYYY")
             day
+            cover {
+              childImageSharp {
+                fluid(maxWidth: 400, maxHeight: 400, cropFocus: ATTENTION) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           fields {
             slug
