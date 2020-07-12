@@ -8,22 +8,24 @@ import SEO from "../components/seo"
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto">
       <nav className="flex justify-center p-4">
         <div className="text-xl font-semibold">
           #100DaysOfCode
         </div>
       </nav>
 
-      <section className="py-12 px-4 text-center">
-        <div className="w-full max-w-2xl mx-auto">
-          <span className="text-sm font-semibold">Learn coding with</span>
-          <h2 className="text-5xl mt-2 mb-6 leading-tight font-heading">
-            100 Days Of Code
-          </h2>
-          <p className="subtitle mb-8 leading-relaxed">
-            A 100-day project which will change your life. Join us!
-          </p>
+      <section className="hero-image">
+        <div className="overlay py-32 px-4 text-center">
+          <div className="w-full max-w-2xl mx-auto">
+            <span className="text-sm font-semibold">Learn coding with</span>
+            <h2 className="text-5xl mt-2 mb-6 leading-tight font-heading">
+              100 Days Of Code
+            </h2>
+            <p className="subtitle mb-8 leading-relaxed">
+              A 100-day project which will change your life. Join us!
+            </p>
+          </div>
         </div>
       </section>
 

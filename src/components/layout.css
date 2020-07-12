@@ -628,3 +628,15 @@ pre tt:after {
 main {
   background-color: #FFFFFF;
 }
+
+.hero-image {
+  font-size: 125%;
+  background-image: url("../images/christopher-gower-m_HRfLhgABo-unsplash.jpg");
+  background-size: cover;
+  height: 24rem;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.3);
+  height: 100%;
+}
