@@ -23,7 +23,7 @@ const IndexPage = ({ data }) => (
               100 Days Of Code
             </h2>
             <p className="mb-8 leading-relaxed">
-              A 100-day project which will change your life. Join us!
+              1% better every day, 2.7x better in 100 days!
             </p>
           </div>
         </div>
