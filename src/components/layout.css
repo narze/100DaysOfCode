@@ -7,7 +7,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+  background-color: #F1FAEE; }
 article,
 aside,
 details,
@@ -199,7 +199,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  color: #457B9D;
   font-family: georgia, serif;
   font-weight: normal;
   word-wrap: break-word;
@@ -590,7 +590,7 @@ td:last-child {
 }
 tt,
 code {
-  background-color: hsla(0, 0%, 0%, 0.04);
+  background-color: #457B9D;
   border-radius: 3px;
   font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
     "Liberation Mono", Menlo, Courier, monospace;
@@ -619,4 +619,12 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+.subtitle {
+  color: #A8DADC;
+}
+
+main {
+  background-color: #FFFFFF;
 }
