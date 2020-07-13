@@ -640,7 +640,7 @@ main {
 
 .card {
   @apply w-full px-4 mb-8;
-  min-height: 200px;
+  min-height: 150px;
 }
 
 @screen lg {
