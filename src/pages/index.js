@@ -85,7 +85,7 @@ export const query = graphql`
             day
             cover {
               childImageSharp {
-                fluid(maxWidth: 400, maxHeight: 400, cropFocus: ATTENTION) {
+                fluid(maxWidth: 400, maxHeight: 400, cropFocus: CENTER) {
                   ...GatsbyImageSharpFluid
                 }
               }
