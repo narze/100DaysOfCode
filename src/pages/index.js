@@ -38,12 +38,7 @@ const IndexPage = ({ data }) => (
                 <Link to={node.fields.slug}>
                   {node.frontmatter.cover && <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />}
                   <div className="pb-8 rounded shadow-md">
-                    <img
-                      className="mb-4"
-                      src="placeholders/pictures/work.jpg"
-                      alt=""
-                    />
-                    <div className="px-6">
+                    <div className="mt-4 px-6">
                       <small>Day {node.frontmatter.day} | {node.frontmatter.date}</small>
                       <h3 className="text-xl my-3 font-heading">
                         {node.frontmatter.title}
