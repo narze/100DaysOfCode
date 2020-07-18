@@ -5,7 +5,10 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IndexPage = ({ data }) => (
+const IndexPage = ({ data }) => {
+  const latestEntryNode = data.latestEntry.edges[0] && data.latestEntry.edges[0].node
+
+  return (
   <Layout>
     <SEO title="Home" />
     <div className="container mx-auto">
@@ -29,11 +32,31 @@ const IndexPage = ({ data }) => (
         </div>
       </section>
 
+      { latestEntryNode &&
+        <section className="py-12 px-4">
+          <h2 className="text-3xl text-center mb-8 font-heading">Latest : Day {latestEntryNode.frontmatter.day}</h2>
+
+          <Link to={latestEntryNode.fields.slug}>
+            <div className="mx-32">
+              {latestEntryNode.frontmatter.cover && <Img fluid={latestEntryNode.frontmatter.cover.childImageSharp.fluid} />}
+              <div className="pb-8 rounded shadow-md">
+                <div className="mt-4 px-6">
+                  <small>Day {latestEntryNode.frontmatter.day} | {latestEntryNode.frontmatter.date}</small>
+                  <h3 className="text-xl my-3 font-heading">
+                    {latestEntryNode.frontmatter.title}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </section>
+      }
+
       <section className="py-12 px-4">
-        <h2 className="text-3xl text-center mb-8 font-heading">Entries</h2>
+        <h2 className="text-3xl text-center mb-8 font-heading">All Entries</h2>
         <div className="flex flex-wrap -mx-4">
           {
-            data.allMarkdownRemark.edges.map(({ node }) => (
+            data.entries.edges.map(({ node }) => (
               <div key={node.id} className="card">
                 <Link to={node.fields.slug}>
                   {node.frontmatter.cover && <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />}
@@ -64,13 +87,36 @@ const IndexPage = ({ data }) => (
       </footer>
     </div>
   </Layout>
-)
+)}
 
 export default IndexPage
 
 export const query = graphql`
-  query MyQuery {
-    allMarkdownRemark(sort: {fields: frontmatter___day, order: ASC}) {
+  query {
+    entries: allMarkdownRemark(sort: {fields: frontmatter___day, order: ASC}) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+            day
+            cover {
+              childImageSharp {
+                fluid(maxWidth: 400, maxHeight: 400, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    }
+    latestEntry: allMarkdownRemark(limit: 1, sort: {fields: frontmatter___day, order: DESC}) {
       edges {
         node {
           id

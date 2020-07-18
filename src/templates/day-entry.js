@@ -18,7 +18,6 @@ export default function DayEntry({ data }) {
           </div>
         </nav>
 
-
         <section className="py-12 px-4">
           <h2 className="text-3xl text-center mb-2 font-heading">Day {entry.frontmatter.day} | {entry.frontmatter.title}</h2>
           <p className="mt-1 my-4 text-center text-gray-400">{entry.frontmatter.date}</p>
