@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 
 const IndexPage = ({ data }) => {
   const latestEntryNode = data.latestEntry.edges[0] && data.latestEntry.edges[0].node
+  const tagGroups = data.tagGroups && data.tagGroups.group
 
   return (
   <Layout>
@@ -75,6 +76,23 @@ const IndexPage = ({ data }) => {
         </div>
       </section>
 
+      { tagGroups &&
+        <section className="py-12 px-4">
+          <h2 className="text-3xl text-center mb-8 font-heading">What I have learned {latestEntryNode && `in ${latestEntryNode.frontmatter.day} days`}</h2>
+
+          <div className="p-6 rounded shadow-md text-center">
+            {
+              tagGroups.sort((a, b) => b.totalCount - a.totalCount)
+                       .map(({ tag, totalCount }) => (
+                <div>
+                  <strong>{tag} -</strong> {totalCount} Day{totalCount > 1 ? "s" : ""}
+                </div>
+              ))
+            }
+          </div>
+        </section>
+      }
+
       <footer className="flex flex-wrap items-center justify-between p-4">
         <div className="w-full lg:w-auto lg:mr-6 mb-4 lg:mb-0 text-center">
           &copy; {new Date().getFullYear()}, Built with
@@ -137,6 +155,12 @@ export const query = graphql`
           }
           excerpt
         }
+      }
+    }
+    tagGroups: allMarkdownRemark {
+      group(field: frontmatter___tags) {
+        tag: fieldValue
+        totalCount
       }
     }
   }
