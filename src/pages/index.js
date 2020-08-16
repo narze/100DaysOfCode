@@ -86,15 +86,30 @@ const IndexPage = ({ data }) => {
       </section>
 
       { tagGroups &&
-        <section className="py-12 px-4">
-          <h2 className="text-3xl text-center mb-8 font-heading">What I have learned {latestEntryNode && `in ${latestEntryNode.frontmatter.day} days`}</h2>
+        <section className="py-8 px-4">
+          <h2 className="text-3xl text-center mb-2 font-heading">What I have learned</h2>
 
-          <div className="p-6 rounded shadow-md text-center">
+          <div className="p-6 flex flex-wrap justify-center items-center">
             {
               tagGroups.sort((a, b) => b.totalCount - a.totalCount)
                        .map(({ tag, totalCount }, i) => (
-                <div key={i}>
-                  <strong>{tag} -</strong> {totalCount} Day{totalCount > 1 ? "s" : ""}
+                <div key={i} className="flex-initial">
+                  {
+                    totalCount > 10 ? (
+                      <div className="text-xl p-3 m-1 border rounded">
+                        <strong>{tag}</strong> {totalCount} Days
+                      </div>
+                    ) :
+                    totalCount > 1 ? (
+                      <div className="text-base p-2 m-1 border rounded">
+                        <strong>{tag}</strong> {totalCount} Days
+                      </div>
+                    ) : (
+                      <div className="text-xs p-1 m-1 border rounded">
+                        <strong>{tag}</strong> {totalCount} Day
+                      </div>
+                    )
+                  }
                 </div>
               ))
             }
