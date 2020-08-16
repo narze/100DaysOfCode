@@ -7,6 +7,8 @@ import Img from "gatsby-image"
 export default function Page({ data, pageContext }) {
   const posts = data.allMarkdownRemark.edges
   const { currentPage, numPages } = pageContext
+  const isFirst = currentPage === 1
+  const isLast = currentPage === numPages
 
   return (
     <Layout>
@@ -44,13 +46,35 @@ export default function Page({ data, pageContext }) {
           </div>
 
           <div className="flex justify-around">
-            {Array.from({ length: numPages }, (_, i) => (
-              <Link key={`pagination-number${i + 1}`} to={`/page/${i + 1}`}>
-                <div className="p-1 px-4 bg-teal-300">
-                  {i + 1}
+            {!isFirst && (
+              <Link to={`/page/${currentPage - 1}`} rel="prev">
+                <div className="p-2 px-4 bg-teal-300">
+                  ← Prev
                 </div>
               </Link>
+            )}
+            {Array.from({ length: numPages }, (_, i) => (
+              <>
+                { currentPage == i + 1 ? (
+                  <div className="p-2 px-4 bg-teal-100">
+                    {i + 1}
+                  </div>
+                ) : (
+                  <Link key={`pagination-number${i + 1}`} to={`/page/${i + 1}`}>
+                    <div className="p-2 px-4 bg-teal-300">
+                      {i + 1}
+                    </div>
+                  </Link>
+                ) }
+              </>
             ))}
+            {!isLast && (
+              <Link to={`/page/${currentPage + 1}`} rel="next">
+                <div className="p-2 px-4 bg-teal-300">
+                  Next →
+                </div>
+              </Link>
+            )}
           </div>
         </section>
       </div>

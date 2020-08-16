@@ -79,7 +79,7 @@ const IndexPage = ({ data }) => {
         <div className="flex justify-end">
           <Link to={`/page/2`}>
             <div className="p-2 bg-teal-300">
-              Next Page
+              Next →
             </div>
           </Link>
         </div>
