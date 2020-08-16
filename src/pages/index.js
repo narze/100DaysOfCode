@@ -111,7 +111,11 @@ export default IndexPage
 
 export const query = graphql`
   query {
-    entries: allMarkdownRemark(sort: {fields: frontmatter___day, order: ASC}) {
+    entries: allMarkdownRemark(
+      sort: {fields: frontmatter___day, order: DESC},
+      limit: 9,
+      skip: 0
+    ) {
       edges {
         node {
           id
