@@ -15,12 +15,14 @@ export default function Page({ data, pageContext }) {
       <div className="container mx-auto">
         <nav className="flex justify-center p-4">
           <div className="text-xl font-semibold">
-            {`Page ${currentPage}`}
+            <Link to="/">#100DaysOfCode</Link>
           </div>
         </nav>
 
         <section className="py-12 px-4">
-          <h2 className="text-3xl text-center mb-8 font-heading">All Entries</h2>
+          <h2 className="text-3xl text-center mb-8 font-heading">
+            {`Page ${currentPage}`}
+          </h2>
           <div className="flex flex-wrap -mx-4">
             {
               posts.map(({ node }, i) => (
@@ -39,6 +41,16 @@ export default function Page({ data, pageContext }) {
                 </div>
               ))
             }
+          </div>
+
+          <div className="flex justify-around">
+            {Array.from({ length: numPages }, (_, i) => (
+              <Link key={`pagination-number${i + 1}`} to={`/page/${i + 1}`}>
+                <div className="p-1 px-4 bg-teal-300">
+                  {i + 1}
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
       </div>

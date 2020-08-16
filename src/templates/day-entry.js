@@ -14,7 +14,7 @@ export default function DayEntry({ data }) {
       <div className="container mx-auto">
         <nav className="flex justify-center p-4">
           <div className="text-xl font-semibold">
-            #100DaysOfCode
+            <Link to="/">#100DaysOfCode</Link>
           </div>
         </nav>
 
@@ -27,7 +27,7 @@ export default function DayEntry({ data }) {
           </div>
 
           <div dangerouslySetInnerHTML={{ __html: entry.html }} />
-          <Link className="text-gray-600 font-semibold underline" to="/">Back</Link>
+          <Link className="p-1 px-4 bg-teal-300" to="/">Back</Link>
         </section>
       </div>
     </Layout>

@@ -12,10 +12,11 @@ const IndexPage = ({ data }) => {
   return (
   <Layout>
     <SEO title="Home" />
+
     <div className="container mx-auto">
       <nav className="flex justify-center p-4">
         <div className="text-xl font-semibold">
-          #100DaysOfCode
+          <Link to="/">#100DaysOfCode</Link>
         </div>
       </nav>
 
@@ -74,6 +75,14 @@ const IndexPage = ({ data }) => {
             ))
           }
         </div>
+
+        <div className="flex justify-end">
+          <Link to={`/page/2`}>
+            <div className="p-2 bg-teal-300">
+              Next Page
+            </div>
+          </Link>
+        </div>
       </section>
 
       { tagGroups &&
@@ -83,8 +92,8 @@ const IndexPage = ({ data }) => {
           <div className="p-6 rounded shadow-md text-center">
             {
               tagGroups.sort((a, b) => b.totalCount - a.totalCount)
-                       .map(({ tag, totalCount }) => (
-                <div>
+                       .map(({ tag, totalCount }, i) => (
+                <div key={i}>
                   <strong>{tag} -</strong> {totalCount} Day{totalCount > 1 ? "s" : ""}
                 </div>
               ))
